@@ -1,0 +1,21 @@
+                           NLP Project Plan
+
+Design:
+On many websites, people can leave behind comments, reviews to express their opinions. But who review the reviewers? How reliable are are these reviews and comments? Without oversight, anything can be abused. This project is trying to quantify the quality of the reviews using NLP techniques. A diversity index on how different the reviews look from other reviews will be attached to each reviewed product to see how different the reviews are for each product. 
+
+
+Data:
+The primary data are amazon reviews on software. A total of 250,000 reviews on various software products are used as the data set.  
+
+The reviews of the same product are grouped to find how different the reviews are written for the same product. The cosine distance of each review to other reviews can judge how different the reviews are to each other. The more varied the reviews are, the less likely the review is a copy and paste review written without regard to the underlying facts.  
+
+Then the reviews for different products in the same category are compared to see how diverse the reviews are compared to other products. Instead of only using the average number of stars a product receives to judge the quality of a product, a diversity index of how different the writing of the reviews are to each other, can gauge how different people jedge the products, and reduce the impact of paid reviews. 
+
+
+Algorithms:
+
+This project will use TF-IDF vectorlizer to generate the document term matrix. Then discover the main topics in the reviews. Then the distance each of the reviews to the average review is generated to see how different each review is. 
+
+
+
+
