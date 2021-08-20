@@ -1,0 +1,40 @@
+                            Review Filtering NLP Project Summary
+
+Summary:
+On many websites, people can leave behind a large number of comments, reviews, etc. to express their opinions. It is not rare to see hundreds of reviews on some subject. Yet, people seldomly read beyond a small number of reviews and comments, usually less than 10. 
+
+This NLP project is attempting to condense a large amount of reviews about a particular subject into a much smaller subset without losing much information. The reviews are seperated into two groups, unique set and non-unique set. The reviews in the unique set are all sufficiently different from each other, while the reviews in the non-unique set have a high similarity with at least one review in the unique set.   
+
+Thus, by only looking at the unique set of reviews, instead of the entire set of reviews, the information lost is small compared to the time saving of looking at the whole set, or any sub set of the entire reviews.  
+
+Data:
+The primary data are amazon reviews on Major Applicance. A total of 96,000 reviews on major appliance, are examined. The reviews cover time period from year 2002 to year 2015. The reviews contained a total of 90,000 different user IDs and 10,000 product IDs. The data is relatively sparse, and a vast majorities of products have less than 5 reviews. The product with the most reviews have 1000+ reviews written. 
+
+The products with a single review will have a unique set of reviews with 1 member. The product with more reviews could have a unique set of reviews range anywhere from 1 to the total number of actual reviews.
+
+Algorithms:
+
+The review data will be seperated into positive reviews and negative reviews via the star ratings given to the product. The positive and negative reviews will be used to generate two different corpus of review data.
+
+The review text is first cleaned to remove most punctuation marks. Two special punctuation marks,  ! and ' are left behind are not removed. In this review data set, they provides import information to generate topics, and are kept in pre-processing. Numbers are also removed.
+
+After that, lemmentation of the words is performed. This is performed using Spacy library. Following that, the TF-IDF vectorlizer is used to generate the document term matrix. Then dimension reduction is performed to reduce the total dimensions to 30 topics, using NMF. 
+
+After the 30 topics are discovered, they are found to generally fall into two groups. Some topics are appliance specific. It deals with Oven, or dish washer.
+The other topics are sentiment related. It express a different degree of like and dislike with little input on specific appliance.    
+
+The positive reviews and negative reviews for each product are grouped together and pair wise cosine similarity are calculated to each.
+
+The reviews are sorted based on review date. The latest review in always placed into the unique set first. All earlier reviews will be declared as a unique review only if it has low cosine similarity (<0.6 ) with every other reviews currently in the unique set. 
+
+Based on the threshold of 0.6, 10% of the reviews fall into the unique set.
+   
+Tools:
+The Spacy library is used to do part of the NLP processing. Different tools for dimensional reduction are attempted. TF_IDF vectorizer and NMF gives the cleanest topic, and are chosen. 
+
+To reduce the total reviews into a unique set, a clustering algorithm can be attempted. But there is no clear way to choose a proper hyper parameters for this data set. So cosine similarity is used to seperate the reviews into the unique set and non-unique set.
+
+Conclusion:   
+Since the reviews used to generate the corpus covers many different type of appliances, the topics generated are too board. If the reviews on only washer and dryer are grouped together to generate a corpus, and the reviews in this category  are processed using this smaller corpus instead of the much broader corpus, the result would be better.
+
+Despite that, a clear set of rather unique reviews can be generated using NLP techniques. 
